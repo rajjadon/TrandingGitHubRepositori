@@ -2,6 +2,7 @@ package com.raj.jadon.network.safeApiRequest
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.raj.jadon.network.RetrialPolicy
 import com.raj.jadon.network.baseResponse.ErrorResponse
 import com.raj.jadon.network.dataState.DataState
 import com.raj.jadon.network.exception.NoInternetException
@@ -9,6 +10,7 @@ import com.raj.jadon.network.networkHelper.NetworkHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
+import retrofit2.Response
 import java.net.SocketTimeoutException
 import javax.inject.Inject
 
@@ -20,10 +22,44 @@ open class SafeApiRequest
 @Inject constructor(
     private val networkHelper: NetworkHelper
 ) {
-    suspend fun <T : Any> apiRequest(dataRequest: suspend () -> T): DataState<T> {
+    suspend fun <T : Any> apiRequest(
+        maxRetry: Int = RetrialPolicy.Default.retryNum,
+        retry: Int = 1,
+        apiCall: suspend () -> T,
+    ): DataState<T> {
+
+        return when (val data = internalApiRequest(dataRequest = apiCall)) {
+            is DataState.Success -> data
+            is DataState.Error -> {
+                if (retry < maxRetry)
+                    apiRequest(maxRetry, retry, apiCall)
+                else
+                    data
+            }
+            DataState.Loading -> DataState.Loading
+        }
+    }
+
+    private suspend inline fun <T : Any> internalApiRequest(
+        crossinline dataRequest: suspend () -> T
+    ): DataState<T> {
         return try {
             if (networkHelper.isNetworkConnected()) {
-                DataState.Success(withContext(Dispatchers.IO) { dataRequest.invoke() })
+                val response = withContext(Dispatchers.IO) { dataRequest.invoke() }
+
+                if (response is Response<*>) {
+
+                    if (response.code() == 200)
+                        DataState.Success(response)
+                    else {
+                        val errorResponse =
+                            ErrorResponse(response.code(), true, getErrorMessage(response.code()))
+                        val throwable = Throwable(message = errorResponse.message)
+                        DataState.Error(Exception(throwable), errorMessage = errorResponse.message)
+                    }
+                } else
+                    DataState.Success(response)
+
             } else {
                 val throwable = NoInternetException("Please check your Internet Connection")
                 DataState.Error(throwable, throwable.message.toString())
