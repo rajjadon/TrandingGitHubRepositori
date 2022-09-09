@@ -5,6 +5,7 @@ buildscript {
     ext.hilt_version = '2.40.5'
     ext.retrofit_version = '2.9.0'
     ext.glide = '4.13.2'
+    ext.timber_version = '5.0.1'
 
     repositories {
         google()
