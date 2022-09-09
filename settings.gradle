@@ -17,3 +17,4 @@ rootProject.name = "TrandingGitHubRepositori"
 include ':app'
 include ':network'
 include ':domain'
+include ':data'
