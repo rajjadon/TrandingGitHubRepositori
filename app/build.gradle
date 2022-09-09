@@ -9,14 +9,15 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk appCompileSdkVersion
 
     defaultConfig {
         applicationId "com.raj.jadon.trandinggithubrepositori"
-        minSdk 21
-        targetSdk 32
-        versionCode 1
-        versionName "1.0"
+
+        minSdk appMinSdkVersion
+        targetSdk appTargetSdkVersion
+        versionCode appVersionCode
+        versionName appVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

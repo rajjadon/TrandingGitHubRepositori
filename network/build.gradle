@@ -6,11 +6,14 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk appCompileSdkVersion
 
     defaultConfig {
-        minSdk 21
-        targetSdk 32
+
+        minSdk appMinSdkVersion
+        targetSdk appTargetSdkVersion
+        versionCode appVersionCode
+        versionName appVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -56,6 +59,7 @@ dependencies {
     def retrofit = "2.9.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:$project.okhttp_version"
 
     // Timber
     implementation "com.jakewharton.timber:timber:$project.timber_version"
