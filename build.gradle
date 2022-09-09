@@ -41,7 +41,6 @@ allprojects {
         okhttp_version = '4.9.1'
         nav_version = "2.5.2"
         lifecycle = "2.5.1"
-        hilt_viewModels = "1.0.0-alpha03"
         retrofit = "2.9.0"
     }
 }

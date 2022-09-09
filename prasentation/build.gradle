@@ -61,7 +61,6 @@ dependencies {
 
     //life cycle view model
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$project.hilt_viewModels"
     implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
 
     //glide library
