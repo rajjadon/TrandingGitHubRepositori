@@ -6,6 +6,8 @@ import com.raj.jadon.network.baseResponse.ErrorResponse
 import com.raj.jadon.network.dataState.DataState
 import com.raj.jadon.network.exception.NoInternetException
 import com.raj.jadon.network.networkHelper.NetworkHelper
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
 import javax.inject.Inject
@@ -21,7 +23,7 @@ open class SafeApiRequest
     suspend fun <T : Any> apiRequest(dataRequest: suspend () -> T): DataState<T> {
         return try {
             if (networkHelper.isNetworkConnected()) {
-                DataState.Success(dataRequest.invoke())
+                DataState.Success(withContext(Dispatchers.IO) { dataRequest.invoke() })
             } else {
                 val throwable = NoInternetException("Please check your Internet Connection")
                 DataState.Error(throwable, throwable.message.toString())
