@@ -1,4 +1,4 @@
-package com.ssf.homevisit.newModule.common
+package com.raj.jadon.prasentation.common
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
-import com.ssf.homevisit.newModule.common.extension.inflateLayout
+import com.raj.jadon.prasentation.common.extension.inflateLayout
 
 abstract class BaseFragment<V : ViewBinding>(@LayoutRes private val layOutId: Int) :
     Fragment() {

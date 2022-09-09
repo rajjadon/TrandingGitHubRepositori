@@ -1,4 +1,4 @@
-package com.ssf.homevisit.newModule.common
+package com.raj.jadon.prasentation.common
 
 import android.os.Bundle
 import android.view.MotionEvent
@@ -7,7 +7,7 @@ import android.widget.EditText
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ViewDataBinding
-import com.ssf.homevisit.newModule.common.extension.setContentView
+import com.raj.jadon.prasentation.common.extension.setContentView
 
 abstract class BaseActivity<V : ViewDataBinding>(@LayoutRes private val layOutId: Int) :
     AppCompatActivity() {

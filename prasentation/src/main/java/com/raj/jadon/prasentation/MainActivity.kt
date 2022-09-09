@@ -1,11 +1,8 @@
 package com.raj.jadon.prasentation
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import com.raj.jadon.prasentation.common.BaseActivity
+import com.raj.jadon.prasentation.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
-}
+@AndroidEntryPoint
+class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main)

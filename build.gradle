@@ -16,7 +16,7 @@ buildscript {
         maven { url 'https://camerakit.bintray.com/camerakit-android-prereleases' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.2'
+        classpath 'com.android.tools.build:gradle:7.0.4'
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.5.2"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10"

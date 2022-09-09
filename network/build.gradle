@@ -12,6 +12,8 @@ android {
 
         minSdk appMinSdkVersion
         targetSdk appTargetSdkVersion
+        versionCode appVersionCode
+        versionName appVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -44,12 +46,10 @@ dependencies {
 
     // DI- Hilt
     implementation "com.google.dagger:hilt-android:$project.hilt_version"
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
     kapt "com.google.dagger:hilt-android-compiler:$project.hilt_version"
 
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$project.hilt_viewModels"
+
     kapt "androidx.hilt:hilt-compiler:1.0.0"
-    implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
     kapt "com.google.dagger:dagger-android-processor:2.35.1"
 
     // Retrofit
