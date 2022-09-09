@@ -13,7 +13,6 @@ buildscript {
         maven { url "https://jitpack.io" }
         //noinspection JcenterRepositoryObsolete
         jcenter()
-        maven { url 'https://camerakit.bintray.com/camerakit-android-prereleases' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.0.4'
