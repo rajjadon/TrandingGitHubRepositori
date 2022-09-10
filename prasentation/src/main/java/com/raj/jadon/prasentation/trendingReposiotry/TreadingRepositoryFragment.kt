@@ -12,15 +12,9 @@ class TreadingRepositoryFragment :
     @Inject
     lateinit var trendingViewModel: TreadingRepositoryViewModel
 
-    override fun setDataCollector() {
-        TODO("Not yet implemented")
-    }
+    override fun setDataCollector() {}
 
-    override fun setUpBindingVariables() {
-        TODO("Not yet implemented")
-    }
+    override fun setUpBindingVariables() {}
 
-    override fun setClickListener() {
-        TODO("Not yet implemented")
-    }
+    override fun setClickListener() {}
 }
