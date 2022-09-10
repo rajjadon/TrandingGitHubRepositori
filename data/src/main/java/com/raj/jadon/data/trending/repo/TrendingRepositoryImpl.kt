@@ -1,3 +1,7 @@
 package com.raj.jadon.data.trending.repo
 
-class TrendingRepositoryImpl : ITrendingRepo
+import com.raj.jadon.network.safeApiRequest.SafeApiRequest
+import javax.inject.Inject
+
+class TrendingRepositoryImpl @Inject constructor(private val safeApiRequest: SafeApiRequest) :
+    ITrendingRepo
