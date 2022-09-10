@@ -1,6 +1,6 @@
 package com.raj.jadon.prasentation.trendingReposiotry
 
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import com.raj.jadon.prasentation.R
 import com.raj.jadon.prasentation.common.base.BaseFragment
 import com.raj.jadon.prasentation.databinding.FragmentTrendingRepositoryBinding
@@ -9,7 +9,7 @@ import com.raj.jadon.prasentation.trendingReposiotry.viewModel.TreadingRepositor
 class TreadingRepositoryFragment :
     BaseFragment<FragmentTrendingRepositoryBinding>(R.layout.fragment_trending_repository) {
 
-    private val trendingViewModel by viewModels<TreadingRepositoryViewModel>()
+    private val trendingViewModel by activityViewModels<TreadingRepositoryViewModel>()
 
     override fun setDataCollector() {}
 
