@@ -73,4 +73,7 @@ dependencies {
 
     // Timber
     api "com.jakewharton.timber:timber:$project.timber_version"
+
+    // swipe to refresh
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 }
