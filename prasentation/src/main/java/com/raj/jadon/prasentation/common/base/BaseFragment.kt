@@ -1,4 +1,4 @@
-package com.raj.jadon.prasentation.common
+package com.raj.jadon.prasentation.common.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
