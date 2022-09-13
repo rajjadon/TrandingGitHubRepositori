@@ -9,6 +9,7 @@ import com.raj.jadon.prasentation.databinding.FragmentTrendingRepositoryBinding
 import com.raj.jadon.prasentation.trendingReposiotry.adapter.TreadingRepositoryAdapter
 import com.raj.jadon.prasentation.trendingReposiotry.viewModel.TreadingRepositoryViewModel
 import timber.log.Timber
+import java.util.*
 
 class TreadingRepositoryFragment :
     BaseFragment<FragmentTrendingRepositoryBinding>(R.layout.fragment_trending_repository) {
@@ -24,6 +25,12 @@ class TreadingRepositoryFragment :
                 is DataState.Success -> adapter.submitList(it.baseResponseData)
             }
         }
+
+        trendingViewModel.getTrendingRepo(
+            language = "kotlin",
+            since = "daily",
+            spokenLanguageCode = Locale.getDefault().language
+        )
     }
 
     override fun setUpBindingVariables() {
