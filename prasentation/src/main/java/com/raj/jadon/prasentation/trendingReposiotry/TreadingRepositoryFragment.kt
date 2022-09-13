@@ -21,15 +21,15 @@ class TreadingRepositoryFragment :
         collectSharedFlowData(trendingViewModel.trendingRepo) {
             when (it) {
                 is DataState.Error -> Timber.e(it.errorMessage)
-                DataState.Loading -> Timber.e(it.toString())
+                is DataState.Loading -> Timber.e(it.toString())
                 is DataState.Success -> adapter.submitList(it.baseResponseData)
             }
         }
 
         trendingViewModel.getTrendingRepo(
-            language = "kotlin",
+            language = "",
             since = "daily",
-            spokenLanguageCode = Locale.getDefault().language
+            spokenLanguageCode = ""
         )
     }
 

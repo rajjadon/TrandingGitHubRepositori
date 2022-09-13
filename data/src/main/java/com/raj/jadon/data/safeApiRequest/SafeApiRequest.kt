@@ -31,9 +31,9 @@ open class SafeApiRequest
         return when (val data = internalApiRequest(dataRequest = apiCall)) {
             is DataState.Success -> data
             is DataState.Error -> {
-                if (retry < maxRetry)
-                    apiRequest(maxRetry, retry, apiCall)
-                else
+                if (retry < maxRetry) {
+                    apiRequest(maxRetry = maxRetry, retry + 1, apiCall = apiCall)
+                } else
                     data
             }
             DataState.Loading -> DataState.Loading
