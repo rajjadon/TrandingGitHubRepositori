@@ -1,4 +1,4 @@
-package com.raj.jadon.data.trending.repo
+package com.raj.jadon.domain.repo
 
 import com.raj.jadon.domain.trandingRepositori.useCase.model.TrendingRepoDao
 import com.raj.jadon.domain.dataState.DataState

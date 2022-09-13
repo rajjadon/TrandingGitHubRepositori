@@ -43,6 +43,8 @@ android {
 dependencies {
 
     implementation project(':prasentation')
+    implementation project(':domain')
+    implementation project(':data')
 
     //noinspection GradleDependency
     implementation 'androidx.core:core-ktx:1.7.0'

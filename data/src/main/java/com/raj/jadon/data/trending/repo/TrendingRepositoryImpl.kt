@@ -3,8 +3,9 @@ package com.raj.jadon.data.trending.repo
 import com.raj.jadon.data.trending.TrendingMapper
 import com.raj.jadon.domain.trandingRepositori.useCase.model.TrendingRepoDao
 import com.raj.jadon.domain.dataState.DataState
+import com.raj.jadon.domain.repo.ITrendingRepo
 import com.raj.jadon.network.networkService.NetworkService
-import com.raj.jadon.network.safeApiRequest.SafeApiRequest
+import com.raj.jadon.data.safeApiRequest.SafeApiRequest
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

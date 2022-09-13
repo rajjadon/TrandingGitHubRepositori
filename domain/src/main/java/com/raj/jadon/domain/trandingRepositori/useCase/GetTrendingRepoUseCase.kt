@@ -1,7 +1,7 @@
 package com.raj.jadon.domain.trandingRepositori.useCase
 
-import com.raj.jadon.data.trending.repo.ITrendingRepo
 import com.raj.jadon.domain.dataState.DataState
+import com.raj.jadon.domain.repo.ITrendingRepo
 import com.raj.jadon.domain.trandingRepositori.useCase.model.TrendingRepoDao
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

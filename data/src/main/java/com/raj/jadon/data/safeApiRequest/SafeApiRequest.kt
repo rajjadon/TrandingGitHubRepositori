@@ -1,10 +1,10 @@
-package com.raj.jadon.network.safeApiRequest
+package com.raj.jadon.data.safeApiRequest
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.raj.jadon.domain.dataState.DataState
 import com.raj.jadon.network.RetrialPolicy
 import com.raj.jadon.network.baseResponse.ErrorResponse
-import com.raj.jadon.domain.trandingRepositori.useCase.dataState.DataState
 import com.raj.jadon.network.exception.NoInternetException
 import com.raj.jadon.network.networkHelper.NetworkHelper
 import kotlinx.coroutines.Dispatchers

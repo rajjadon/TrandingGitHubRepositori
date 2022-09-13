@@ -1,6 +1,6 @@
-package com.raj.jadon.data.di
+package com.raj.jadon.trandinggithubrepositori.di
 
-import com.raj.jadon.data.trending.repo.ITrendingRepo
+import com.raj.jadon.domain.repo.ITrendingRepo
 import com.raj.jadon.data.trending.repo.TrendingRepositoryImpl
 import dagger.Binds
 import dagger.Module

@@ -50,4 +50,9 @@ dependencies {
 
     // Timber
     api "com.jakewharton.timber:timber:$project.timber_version"
+
+    // Retrofit
+    api "com.squareup.retrofit2:retrofit:$project.retrofit"
+    api "com.squareup.retrofit2:converter-gson:$project.retrofit"
+    api "com.squareup.okhttp3:logging-interceptor:$project.okhttp_version"
 }
