@@ -1,4 +1,4 @@
-package com.raj.jadon.network.dataState
+package com.raj.jadon.domain.dataState
 
 sealed class DataState<out T> {
     data class Success<out T>(val baseResponseData: T) : DataState<T>()
