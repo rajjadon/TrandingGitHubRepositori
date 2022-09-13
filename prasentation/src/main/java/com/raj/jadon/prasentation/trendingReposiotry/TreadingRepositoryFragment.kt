@@ -25,16 +25,19 @@ class TreadingRepositoryFragment :
                 is DataState.Success -> adapter.submitList(it.baseResponseData)
             }
         }
+    }
 
+    override fun setUpBindingVariables() {
+        fragmentBinding.adapter = adapter
+    }
+
+    override fun onStart() {
+        super.onStart()
         trendingViewModel.getTrendingRepo(
             language = "",
             since = "daily",
             spokenLanguageCode = ""
         )
-    }
-
-    override fun setUpBindingVariables() {
-        fragmentBinding.adapter = adapter
     }
 
     override fun setClickListener() {}

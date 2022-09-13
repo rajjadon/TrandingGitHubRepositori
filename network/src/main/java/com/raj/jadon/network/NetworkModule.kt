@@ -26,7 +26,7 @@ object NetworkModule {
         @ApplicationContext application: Context,
         authInterceptor: AuthInterceptor
     ): Retrofit.Builder {
-        return Retrofit.Builder().baseUrl("https://ghapi.huchen.dev/")
+        return Retrofit.Builder().baseUrl("https://private-75664-githubtrendingapi.apiary-mock.com/")
             .client(OkHttpClient().newBuilder().apply {
 
                 callTimeout(40, TimeUnit.SECONDS)
