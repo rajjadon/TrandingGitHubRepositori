@@ -37,6 +37,10 @@ object NetworkModule {
                     HttpLoggingInterceptor()
                         .setLevel(HttpLoggingInterceptor.Level.BODY)
                 )
+                addInterceptor(
+                    HttpLoggingInterceptor()
+                        .setLevel(HttpLoggingInterceptor.Level.HEADERS)
+                )
                 cache(Cache(File(application.cacheDir, "http-cache"), 10L * 1024 * 1024))
                 retryOnConnectionFailure(true)
                 addInterceptor { chain ->

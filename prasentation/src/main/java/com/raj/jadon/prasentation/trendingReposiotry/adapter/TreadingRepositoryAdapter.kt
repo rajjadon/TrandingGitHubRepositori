@@ -11,14 +11,14 @@ class TreadingRepositoryAdapter :
     BaseAdapter<TrendingRepoDao, TrendingRvItemBinding>(object :
         DiffUtil.ItemCallback<TrendingRepoDao>() {
         override fun areItemsTheSame(oldItem: TrendingRepoDao, newItem: TrendingRepoDao): Boolean {
-            return oldItem.forks == newItem.forks
+            return oldItem.avatar == newItem.avatar
         }
 
         override fun areContentsTheSame(
             oldItem: TrendingRepoDao,
             newItem: TrendingRepoDao
         ): Boolean {
-            return oldItem.forks == newItem.forks
+            return oldItem == newItem
         }
 
     }, R.layout.trending_rv_item) {
