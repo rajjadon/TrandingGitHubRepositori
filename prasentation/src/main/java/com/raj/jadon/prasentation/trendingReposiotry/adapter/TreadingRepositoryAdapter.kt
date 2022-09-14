@@ -23,7 +23,8 @@ class TreadingRepositoryAdapter :
 
     }, R.layout.trending_rv_item) {
     override fun bind(viewBinding: TrendingRvItemBinding, item: TrendingRepoDao, position: Int) {
-        viewBinding.repoImage.loadImage(item.avatar, 10)
-        viewBinding.repoName.text = item.name
+        viewBinding.repoImage.loadImage(item.avatar)
+        viewBinding.repoName.text = item.author
+        viewBinding.repoDes.text = item.description
     }
 }

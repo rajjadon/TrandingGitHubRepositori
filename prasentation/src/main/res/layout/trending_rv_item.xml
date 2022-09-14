@@ -3,18 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isCLicked"
+            type="Boolean" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="10dp"
-        android:paddingTop="5dp"
-        android:paddingEnd="10dp"
-        android:paddingBottom="5dp">
+        android:layout_height="match_parent"
+        android:padding="5dp">
 
         <ImageView
             android:id="@+id/repoImage"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_marginTop="16dp"
             android:contentDescription="@string/app_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -25,7 +32,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:fontFamily="@font/roboto"
             android:textColor="@color/black"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/repoImage"
             app:layout_constraintTop_toTopOf="@+id/repoImage"
@@ -35,14 +44,88 @@
             android:id="@+id/repoDes"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/roboto_medium"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/repoName"
             app:layout_constraintTop_toBottomOf="@+id/repoName"
             tools:text="Repo Des" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/transparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/repoDes" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/bottomLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:elevation="10dp"
+            android:visibility="@{isCLicked ? View.VISIBLE : View.GONE, default= gone}"
+            app:layout_constraintTop_toBottomOf="@+id/repoDes"
+            tools:layout_editor_absoluteX="5dp">
+
+            <ImageButton
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="@drawable/circle"
+                android:contentDescription="@string/app_name"
+                tools:background="@drawable/circle" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/roboto"
+                android:textSize="8sp"
+                tools:ignore="SmallSp"
+                tools:text="C++" />
+
+            <ImageButton
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/star_yellow_16"
+                android:contentDescription="@string/app_name"
+                tools:background="@drawable/star_yellow_16" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/roboto"
+                android:textSize="8sp"
+                tools:ignore="SmallSp"
+                tools:text="C++" />
+
+            <ImageButton
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/fork_black_16"
+                android:contentDescription="@string/app_name"
+                tools:background="@drawable/fork_black_16" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/roboto"
+                android:textSize="8sp"
+                tools:ignore="SmallSp"
+                tools:text="C++" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
