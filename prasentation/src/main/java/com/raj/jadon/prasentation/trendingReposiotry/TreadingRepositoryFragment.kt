@@ -20,9 +20,15 @@ class TreadingRepositoryFragment :
     override fun setDataCollector() {
         collectSharedFlowData(trendingViewModel.trendingRepo) {
             when (it) {
-                is DataState.Error -> Timber.e(it.errorMessage)
-                is DataState.Loading -> Timber.e(it.toString())
-                is DataState.Success -> adapter.submitList(it.baseResponseData)
+                is DataState.Error -> {
+                    fragmentBinding.swipeRefresh.isRefreshing = false
+                    Timber.e(it.errorMessage)
+                }
+                is DataState.Loading -> fragmentBinding.swipeRefresh.isRefreshing = true
+                is DataState.Success -> {
+                    fragmentBinding.swipeRefresh.isRefreshing = false
+                    adapter.submitList(it.baseResponseData)
+                }
             }
         }
     }
@@ -40,5 +46,14 @@ class TreadingRepositoryFragment :
         )
     }
 
-    override fun setClickListener() {}
+    override fun setClickListener() {
+
+        fragmentBinding.swipeRefresh.setOnRefreshListener {
+            trendingViewModel.getTrendingRepo(
+                language = "",
+                since = "daily",
+                spokenLanguageCode = ""
+            )
+        }
+    }
 }
