@@ -5,11 +5,12 @@ import com.raj.jadon.domain.dataState.DataState
 import com.raj.jadon.prasentation.R
 import com.raj.jadon.prasentation.common.base.BaseFragment
 import com.raj.jadon.prasentation.common.extension.collectSharedFlowData
+import com.raj.jadon.prasentation.common.extension.invisible
+import com.raj.jadon.prasentation.common.extension.visible
 import com.raj.jadon.prasentation.databinding.FragmentTrendingRepositoryBinding
 import com.raj.jadon.prasentation.trendingReposiotry.adapter.TreadingRepositoryAdapter
 import com.raj.jadon.prasentation.trendingReposiotry.viewModel.TreadingRepositoryViewModel
 import timber.log.Timber
-import java.util.*
 
 class TreadingRepositoryFragment :
     BaseFragment<FragmentTrendingRepositoryBinding>(R.layout.fragment_trending_repository) {
@@ -22,11 +23,18 @@ class TreadingRepositoryFragment :
             when (it) {
                 is DataState.Error -> {
                     fragmentBinding.swipeRefresh.isRefreshing = false
+                    fragmentBinding.shimmerViewContainer.stopShimmerAnimation()
+                    fragmentBinding.shimmerViewContainer.invisible()
                     Timber.e(it.errorMessage)
                 }
-                is DataState.Loading -> fragmentBinding.swipeRefresh.isRefreshing = true
+                is DataState.Loading -> {
+                    fragmentBinding.shimmerViewContainer.startShimmerAnimation()
+                    fragmentBinding.shimmerViewContainer.visible()
+                }
                 is DataState.Success -> {
                     fragmentBinding.swipeRefresh.isRefreshing = false
+                    fragmentBinding.shimmerViewContainer.stopShimmerAnimation()
+                    fragmentBinding.shimmerViewContainer.invisible()
                     adapter.submitList(it.baseResponseData)
                 }
             }
@@ -39,6 +47,10 @@ class TreadingRepositoryFragment :
 
     override fun onStart() {
         super.onStart()
+
+        fragmentBinding.shimmerViewContainer.startShimmerAnimation()
+        fragmentBinding.shimmerViewContainer.visible()
+
         trendingViewModel.getTrendingRepo(
             language = "",
             since = "daily",
@@ -49,6 +61,7 @@ class TreadingRepositoryFragment :
     override fun setClickListener() {
 
         fragmentBinding.swipeRefresh.setOnRefreshListener {
+            fragmentBinding.swipeRefresh.isRefreshing = true
             trendingViewModel.getTrendingRepo(
                 language = "",
                 since = "daily",
