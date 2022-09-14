@@ -1,18 +1,20 @@
 package com.raj.jadon.prasentation.trendingReposiotry
 
 import androidx.fragment.app.activityViewModels
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.raj.jadon.domain.dataState.DataState
 import com.raj.jadon.prasentation.R
 import com.raj.jadon.prasentation.common.base.BaseFragment
 import com.raj.jadon.prasentation.common.extension.collectSharedFlowData
+import com.raj.jadon.prasentation.common.extension.invisible
+import com.raj.jadon.prasentation.common.extension.visible
 import com.raj.jadon.prasentation.databinding.FragmentTrendingRepositoryBinding
 import com.raj.jadon.prasentation.trendingReposiotry.adapter.TreadingRepositoryAdapter
 import com.raj.jadon.prasentation.trendingReposiotry.viewModel.TreadingRepositoryViewModel
-import timber.log.Timber
-import java.util.*
 
 class TreadingRepositoryFragment :
-    BaseFragment<FragmentTrendingRepositoryBinding>(R.layout.fragment_trending_repository) {
+    BaseFragment<FragmentTrendingRepositoryBinding>(R.layout.fragment_trending_repository),
+    SwipeRefreshLayout.OnRefreshListener {
 
     private val trendingViewModel by activityViewModels<TreadingRepositoryViewModel>()
     private val adapter: TreadingRepositoryAdapter by lazy { TreadingRepositoryAdapter() }
@@ -20,11 +22,35 @@ class TreadingRepositoryFragment :
     override fun setDataCollector() {
         collectSharedFlowData(trendingViewModel.trendingRepo) {
             when (it) {
-                is DataState.Error -> Timber.e(it.errorMessage)
-                is DataState.Loading -> Timber.e(it.toString())
-                is DataState.Success -> adapter.submitList(it.baseResponseData)
+                is DataState.Error -> {
+                    fragmentBinding.swipeRefresh.isRefreshing = false
+                    fragmentBinding.shimmerViewContainer.stopShimmerAnimation()
+                    fragmentBinding.shimmerViewContainer.invisible()
+                    fragmentBinding.recyclerView.visible()
+                }
+                is DataState.Loading -> {
+                    fragmentBinding.shimmerViewContainer.startShimmerAnimation()
+                    fragmentBinding.shimmerViewContainer.visible()
+                }
+                is DataState.Success -> {
+                    fragmentBinding.swipeRefresh.isRefreshing = false
+                    fragmentBinding.shimmerViewContainer.stopShimmerAnimation()
+                    fragmentBinding.shimmerViewContainer.invisible()
+                    adapter.submitList(it.baseResponseData)
+                }
             }
         }
+    }
+
+    override fun setUpBindingVariables() {
+        fragmentBinding.adapter = adapter
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        fragmentBinding.shimmerViewContainer.startShimmerAnimation()
+        fragmentBinding.shimmerViewContainer.visible()
 
         trendingViewModel.getTrendingRepo(
             language = "",
@@ -33,9 +59,21 @@ class TreadingRepositoryFragment :
         )
     }
 
-    override fun setUpBindingVariables() {
-        fragmentBinding.adapter = adapter
+    override fun setClickListener() {
+
+        fragmentBinding.swipeRefresh.setOnRefreshListener(this)
+
+        fragmentBinding.retry.setOnClickListener {
+            onRefresh()
+        }
     }
 
-    override fun setClickListener() {}
+    override fun onRefresh() {
+        fragmentBinding.swipeRefresh.isRefreshing = true
+        trendingViewModel.getTrendingRepo(
+            language = "",
+            since = "daily",
+            spokenLanguageCode = ""
+        )
+    }
 }
