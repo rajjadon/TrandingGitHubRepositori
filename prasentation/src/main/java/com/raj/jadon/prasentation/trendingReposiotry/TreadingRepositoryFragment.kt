@@ -1,6 +1,7 @@
 package com.raj.jadon.prasentation.trendingReposiotry
 
 import androidx.fragment.app.activityViewModels
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.raj.jadon.domain.dataState.DataState
 import com.raj.jadon.prasentation.R
 import com.raj.jadon.prasentation.common.base.BaseFragment
@@ -10,10 +11,10 @@ import com.raj.jadon.prasentation.common.extension.visible
 import com.raj.jadon.prasentation.databinding.FragmentTrendingRepositoryBinding
 import com.raj.jadon.prasentation.trendingReposiotry.adapter.TreadingRepositoryAdapter
 import com.raj.jadon.prasentation.trendingReposiotry.viewModel.TreadingRepositoryViewModel
-import timber.log.Timber
 
 class TreadingRepositoryFragment :
-    BaseFragment<FragmentTrendingRepositoryBinding>(R.layout.fragment_trending_repository) {
+    BaseFragment<FragmentTrendingRepositoryBinding>(R.layout.fragment_trending_repository),
+    SwipeRefreshLayout.OnRefreshListener {
 
     private val trendingViewModel by activityViewModels<TreadingRepositoryViewModel>()
     private val adapter: TreadingRepositoryAdapter by lazy { TreadingRepositoryAdapter() }
@@ -25,7 +26,7 @@ class TreadingRepositoryFragment :
                     fragmentBinding.swipeRefresh.isRefreshing = false
                     fragmentBinding.shimmerViewContainer.stopShimmerAnimation()
                     fragmentBinding.shimmerViewContainer.invisible()
-                    Timber.e(it.errorMessage)
+                    fragmentBinding.recyclerView.visible()
                 }
                 is DataState.Loading -> {
                     fragmentBinding.shimmerViewContainer.startShimmerAnimation()
@@ -60,13 +61,19 @@ class TreadingRepositoryFragment :
 
     override fun setClickListener() {
 
-        fragmentBinding.swipeRefresh.setOnRefreshListener {
-            fragmentBinding.swipeRefresh.isRefreshing = true
-            trendingViewModel.getTrendingRepo(
-                language = "",
-                since = "daily",
-                spokenLanguageCode = ""
-            )
+        fragmentBinding.swipeRefresh.setOnRefreshListener(this)
+
+        fragmentBinding.retry.setOnClickListener {
+            onRefresh()
         }
+    }
+
+    override fun onRefresh() {
+        fragmentBinding.swipeRefresh.isRefreshing = true
+        trendingViewModel.getTrendingRepo(
+            language = "",
+            since = "daily",
+            spokenLanguageCode = ""
+        )
     }
 }
