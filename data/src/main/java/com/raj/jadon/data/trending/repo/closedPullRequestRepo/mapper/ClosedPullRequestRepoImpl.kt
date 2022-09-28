@@ -4,13 +4,13 @@ import com.raj.jadon.data.safeApiRequest.SafeApiRequest
 import com.raj.jadon.domain.dataState.DataState
 import com.raj.jadon.domain.model.ClosedPullRequestUser
 import com.raj.jadon.domain.repo.IClosedPullRequestRepo
-import com.raj.jadon.network.networkService.NetworkService
+import com.raj.jadon.network.networkService.PullRequestService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class ClosedPullRequestRepoImpl @Inject constructor(
-    private val networkService: NetworkService,
+    private val networkService: PullRequestService,
     private val safeApiRequest: SafeApiRequest,
     private val closedPullRequestMapper: ClosedPullRequestMapper
 ) : IClosedPullRequestRepo {

@@ -14,7 +14,4 @@ interface NetworkService {
         @Query(QUERY_PARAMETER_SINCE) since: String,
         @Query(QUERY_PARAMETER_SPOKEN_LANGUAGE_CODE) spokenLanguageCode: String
     ): List<TrendingRepo>
-
-    @GET(ALL_CLOSED_PULL_REQUEST_API)
-    suspend fun getClosedPullRequest(): List<PullRequestUser>
 }
