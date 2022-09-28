@@ -1,6 +1,6 @@
 package com.raj.jadon.domain.repo
 
-import com.raj.jadon.domain.trandingRepositori.useCase.model.TrendingRepoDao
+import com.raj.jadon.domain.model.TrendingRepoDao
 import com.raj.jadon.domain.dataState.DataState
 import kotlinx.coroutines.flow.Flow
 

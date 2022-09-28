@@ -8,3 +8,10 @@ const val QUERY_PARAMETER_SINCE = "since"
 const val QUERY_PARAMETER_SPOKEN_LANGUAGE_CODE = "spoken_language_code"
 
 //////////////////////////////////////////
+
+
+// Trending Api constant
+
+const val ALL_CLOSED_PULL_REQUEST_API = "/repos/rajjadon/TrandingGitHubRepositori/pulls?state=closed"
+
+//////////////////////////////////////////

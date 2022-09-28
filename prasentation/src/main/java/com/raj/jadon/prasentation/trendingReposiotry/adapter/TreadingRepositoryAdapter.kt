@@ -3,7 +3,7 @@ package com.raj.jadon.prasentation.trendingReposiotry.adapter
 import android.graphics.Color
 import androidx.recyclerview.widget.DiffUtil
 import com.example.application.common.BaseAdapter
-import com.raj.jadon.domain.trandingRepositori.useCase.model.TrendingRepoDao
+import com.raj.jadon.domain.model.TrendingRepoDao
 import com.raj.jadon.prasentation.R
 import com.raj.jadon.prasentation.common.extension.loadImage
 import com.raj.jadon.prasentation.databinding.TrendingRvItemBinding
