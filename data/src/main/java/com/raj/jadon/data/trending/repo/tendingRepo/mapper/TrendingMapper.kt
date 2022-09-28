@@ -1,7 +1,7 @@
-package com.raj.jadon.data.trending
+package com.raj.jadon.data.trending.repo.tendingRepo.mapper
 
 import com.raj.jadon.data.DataMapper
-import com.raj.jadon.domain.trandingRepositori.useCase.model.TrendingRepoDao
+import com.raj.jadon.domain.model.TrendingRepoDao
 import com.raj.jadon.network.model.TrendingRepo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

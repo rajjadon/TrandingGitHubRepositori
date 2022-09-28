@@ -1,7 +1,7 @@
-package com.raj.jadon.data.trending.repo
+package com.raj.jadon.data.trending.repo.tendingRepo
 
-import com.raj.jadon.data.trending.TrendingMapper
-import com.raj.jadon.domain.trandingRepositori.useCase.model.TrendingRepoDao
+import com.raj.jadon.data.trending.repo.tendingRepo.mapper.TrendingMapper
+import com.raj.jadon.domain.model.TrendingRepoDao
 import com.raj.jadon.domain.dataState.DataState
 import com.raj.jadon.domain.repo.ITrendingRepo
 import com.raj.jadon.network.networkService.NetworkService

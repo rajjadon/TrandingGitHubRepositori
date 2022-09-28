@@ -1,4 +1,4 @@
-package com.raj.jadon.domain.trandingRepositori.useCase.model
+package com.raj.jadon.domain.model
 
 data class TrendingRepoDao(
     val author: String,
