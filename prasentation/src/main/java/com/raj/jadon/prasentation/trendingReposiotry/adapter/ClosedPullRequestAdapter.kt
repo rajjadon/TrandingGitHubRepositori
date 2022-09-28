@@ -24,7 +24,7 @@ class ClosedPullRequestAdapter :
             return oldItem == newItem
         }
 
-    }, R.layout.trending_rv_item) {
+    }, R.layout.closed_pull_request) {
     override fun bind(
         viewBinding: ClosedPullRequestBinding,
         item: ClosedPullRequestUser,
