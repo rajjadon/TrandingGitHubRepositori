@@ -31,7 +31,7 @@ class ClosedPullRequestAdapter :
         position: Int
     ) {
         viewBinding.repoImage.loadImage(item.user.avatar_url)
-        viewBinding.repoName.text = item.user.name
+        viewBinding.repoName.text = item.title
         viewBinding.repoCreated.text = item.created_date
         viewBinding.repoClosed.text = item.closed_date
     }
